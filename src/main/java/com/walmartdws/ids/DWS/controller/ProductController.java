@@ -20,7 +20,7 @@ public class ProductController {
     public ResponseEntity<?> getAllProduct(){
         List<Product> lista = productService.getAllProduct();
         if(lista.isEmpty()){
-            return new ResponseEntity<>("Sin productos en la Base de Datos", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Database is empty", HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok().body(productService.getAllProduct());
     }
