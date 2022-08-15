@@ -15,8 +15,9 @@ import java.util.Optional;
 @Transactional
 public class ProductServiceImpl implements ProductService{
     @Autowired
+    private RestTemplate restTemplate;
+    @Autowired
     private ProductRepository productRepository;
-
     @Override
     public Product createProduct(Product product) {
         return productRepository.save(product);
@@ -69,7 +70,6 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product postApi() {
-        RestTemplate restTemplate = new RestTemplate();
         String url = "https://hello-world-rest-api-master.azurewebsites.net/dws";
         Product product = restTemplate.postForObject(url, "", Product.class);
         return productRepository.save(product);
